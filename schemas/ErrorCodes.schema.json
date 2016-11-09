@@ -6,6 +6,7 @@
     "error-code" : {"$ref": "#/definitions/error-codeType"},
     "error-desc" : {"type" : "string"}
   },
+	"required" : ["error-code", "error-desc"],
   "definitions":
   {
     "error-codeType" :

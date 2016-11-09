@@ -75,7 +75,8 @@ types:
 #    type: !include schemas/LISAtypes.schema.json#ISO8601-Date
     pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   errorCodeType:
-    type: !include schemas/ErrorCodes.schema.json#definitions/error-codeType
+    type: !include schemas/ErrorCodes.schema.json
+#    type: !include schemas/ErrorCodes.schema.json#definitions/error-codeType
 
   paymentDirectionType:
     type: !include schemas/HMRCPayment.get.json#definitions/paymentDirectionType
