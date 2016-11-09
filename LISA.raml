@@ -61,11 +61,11 @@ traits:
 
 types:
   NINOtype:
-    type: !include schemas/LISAtypes.schema.json#definitions/NINOType
-#    pattern: "^[A-Z]{2}\\d{6}[A-D]$"
+#    type: !include schemas/LISAtypes.schema.json#definitions/NINOType
+    pattern: "^[A-Z]{2}\\d{6}[A-D]$"
   IDtype:
-    type: !include schemas/LISAtypes.schema.json#definitions/IDType
-#    pattern: "^\\d{10}$"
+#    type: !include schemas/LISAtypes.schema.json#definitions/IDType
+    pattern: "^\\d{10}$"
   LISAManager:
     type: !include schemas/LISAManager.get.schema.json
   LISAManagerReferenceNumberType:
