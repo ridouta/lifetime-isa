@@ -79,16 +79,40 @@ types:
 #    type: !include schemas/ErrorCodes.schema.json#definitions/error-codeType
 
   paymentDirectionType:
-    type: !include schemas/HMRCPayment.get.json#definitions/paymentDirectionType
+#    type: !include schemas/HMRCPayment.get.json#definitions/paymentDirectionType
+    schema:
+      {
+        "type" : "string",
+        "enum": ["credit", "debit"]
+      }
 
   paymentStatusType:
-    type: !include schemas/HMRCPayment.get.json#definitions/paymentStatusType
+    {
+      "type" : "string",
+      "enum": ["pending", "submitted", "completed"]
+    }
+#    type: !include schemas/HMRCPayment.get.json#definitions/paymentStatusType
 
   paymentMethodType:
-    type: !include schemas/HMRCPayment.get.json#definitions/paymentMethodType
+    {
+      "type" : "string",
+      "enum": ["directDebit", "BACS"]
+    }
+#    type: !include schemas/HMRCPayment.get.json#definitions/paymentMethodType
 
-  lisaTransationType:
-    type: !include schemas/LISATransaction.get.schema.json#definitions/lisaTransactionTypeType
+  hmrcTransactionType:
+    {
+      "type" : "string",
+      "enum": ["bonus", "charge"]
+    }
+
+  lisaTransactionType:
+    {
+      "type" : "string",
+      "enum": ["deposit", "withdrawal", "HTBtransfer", "LISAtransfer",
+            "bonusClaim", "chargeMade"]
+    }
+#    type: !include schemas/LISATransaction.get.schema.json#definitions/lisaTransactionTypeType
 
 /manager:
   description: This resource models the existence of a registered LISA Manager organisation.
@@ -142,7 +166,7 @@ types:
                 examples:
                   notOpenStatus:
                     {
-                      "error-code" : "not-open-status",
+                      "error-code1" : "not-open-status",
                       "error-desc" : "invalid status: must create with open status"
                     }
                   InvestorNotFound:
@@ -251,9 +275,9 @@ types:
               transactionType:
                 description:  search for HMRCTransactions including transactions
                   with the specified transactiomType
-                type: lisaTransationType
+                type: lisaTransactionType
                 #required: false
-                example: "LISATransfer"
+                example: "LISAtransfer"
             responses:
               200:
                 body:
