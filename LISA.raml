@@ -260,7 +260,7 @@ types:
           description: !include documentation/LISATransaction
           get:
             is: [version-1]
-            displayName: Get LISA transaction using query parameters
+            displayName: GET an array of LISATransaction using query parameters
               on date range and optionally transactionType
             description: Returns a collection of LISATransaction resources for
               the specified account as a JSON array.  The array will be empty
@@ -403,7 +403,7 @@ types:
     /payments:
       get:
         is: [version-1]
-        displayName: Get HMRC Payment using query parameters on date range and optionally direction, method and status
+        displayName: GET HMRC Payment using query parameters on date range and optionally direction, method and status
         description: !include documentation/HMRCPayment
         queryParameters:
           startDate:
@@ -450,7 +450,7 @@ types:
             example: "1111111111"
         get:
           is: [version-1]
-          displayName: Get HMRCPayment using paymentReference as a unique key
+          displayName: GET an HMRCPayment resource using paymentReference as a unique key
           description: Fetch a JSON HMRCPayment resource selected by paymentReference
           responses:
             200:
@@ -538,7 +538,7 @@ types:
 /investors:
   get:
     is: [version-1]
-    displayName: Get LISA investor using full matching
+    displayName: GET a LISA investor using full matching
     description: !include documentation/LISAInvestor
     queryParameters:
       NINO:
@@ -571,7 +571,7 @@ types:
 
   post:
     is: [version-1]
-    displayName: Add a new LISA Investor that has not already been created
+    displayName: POST to create new LISA Investor that has not already been created
     description: !include documentation/LISAInvestor.post
     body:
       application/json:
