@@ -1,17 +1,17 @@
 {
-	"lisaTransactionID" : "3333333333",	// ID created by LISA Provider
+	"lisaTransactionID" : "3333333333",
 	"accountID" : "1234567890",
 	"LISAManagerReferenceNumber" : "Z9876543210",
 
 	"transactionType" :  "deposit",
-	"complianceReason"	 : "chargeable",			// Optional
-	"dateSubmitted" : "2017-10-22T11:33Z",			// type : "Timestamp"
+	"complianceReason"	 : "chargeable",
+	"dateSubmitted" : "2017-10-22T11:33Z",
 	"financialPeriod" :
 	{
  		"startDate" : "2017-04-05",
-		"endDate" : "2017-04-06"				
+		"endDate" : "2017-04-06"
 	},
-	"amount" : 123.45,			// Units : Pound "type" : "number",
+	"amount" : 123.45,
 
 	"_links" :
 	{
@@ -24,26 +24,23 @@
     "manager" : {"href" : "/lisa/manager/Z876543210"}
 	},
 
-	// A Maximum of one of the below will exist depending upon transaction type
- 	"transferFromLISA" 	: // (optional – present if transaction type = "LISAtransfer"
+
+ 	"transferFromLISA" 	:
 	{
 		"LISAManagerReferenceNumber" : "Z9876543222",
 		"accountID" : "1234567890",
 		"transferDate" : "2012-12-22",
 		"_links" :
 		{
-			"transferredFromManager" : {"href" :
-					"/lisa/manager/Z876543222"},
-	"transferedFromAccount" :
-	{
+			"transferredFromManager" : { "href" : "/lisa/manager/Z876543222"},
+			"transferedFromAccount" :
+			{
 				"href" : "/lisa/manager/Z876543222/accounts/1234567890"
 			}
 		}
 	},
 
-	// To associate a charge with this transaction
-	// present if transaction type = "withdrawal" OR transactionType = "deposit" and
-	// the complianceReason indicates a non-complance.
+
 	"incurredCharge" :
 	{
 		"chargeLISATransactionID" : "4444444444",
@@ -53,8 +50,7 @@
 		}
 	},
 
-	// To associate a charge transaction to causing transaction
-	// present if transaction type = "ChargeMade"
+
 	"chargeDueTo" :
 	{
 		"chargeReasonCode" : "over-lisa-limit",
@@ -65,7 +61,6 @@
 		}
 	},
 
-	// To correct a transaction create a new transaction and refer to the superseded transaction
 	"supersedesTransaction" :
 	{
 		"supersedeReasonCode" : "error-correction",

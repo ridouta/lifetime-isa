@@ -19,6 +19,7 @@
 				"investor-not-found",
 				"wrong-lisa-manager",
 				"cant-change-accountID",
+				"cant-change-investor",
 				"invalid-status-change",
 				"no-acccount-with-manager",
 				"investor-already-created",

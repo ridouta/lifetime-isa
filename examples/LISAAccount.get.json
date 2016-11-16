@@ -32,9 +32,7 @@
 			"firstSubscribed" : "2017-07-12T11:30+01",
 			"_links" :
 			{
-				"lisaTransactions" : {"href" :
-					"/lisa/manager/Z9876543210/accounts/1234567890/transactions
-					?startDate=\"2017-04-06\"&endDate=\"2018-04-05\""}
+				"lisaTransactions" : {"href" : "/lisa/manager/Z9876543210/accounts/1234567890/transactions?startDate=\"2017-04-06\"&endDate=\"2018-04-05\""}
 			}
 		},
 		{
@@ -47,9 +45,7 @@
 			"firstSubscribed" : "2018-06-16T12:00Z" ,
 			"_links" :
 			{
-				"lisaTransactions" : {"href" :
-						"/lisa/manager/Z9876543210/accounts/1234567890/transactions
-						?startDate=\"06-04-2018\"&endDate=\"05-04/2019\""}
+				"lisaTransactions" : {"href" :"/lisa/manager/Z9876543210/accounts/1234567890/transactions?startDate=\"06-04-2018\"&endDate=\"05-04/2019\""}
 			}
 		}
 	],

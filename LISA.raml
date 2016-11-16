@@ -71,9 +71,9 @@ types:
   LISAManagerReferenceNumberType:
 #    type: !include schemas/LISAtypes.schema.json#definitions/LISAManagerReferenceNumberType
     pattern: "^Z\\d{10}$"
-  ISO8601-DateType:
+  ISO8601-Date:
 #    type: !include schemas/LISAtypes.schema.json#ISO8601-Date
-    pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   errorCodeType:
     type: !include schemas/ErrorCodes.schema.json
 #    type: !include schemas/ErrorCodes.schema.json#definitions/error-codeType
@@ -152,7 +152,7 @@ types:
         body:
           application/json:
             type: !include schemas/LISAAccount.put.schema.json
-            example: !include examples/LISAAccount.get.json
+            example: !include examples/LISAAccount.put.json
         responses:
           201:
             headers:
@@ -218,8 +218,8 @@ types:
           description: To update an existing LISAAccount to change status and set closeDate.
           body:
             application/json:
-              example: !include examples/LISAAccount.put.json
               type: !include schemas/LISAAccount.put.schema.json
+              example: !include examples/LISAAccount.put.json
           responses:
             200:
               description: The account is updated successfully.
@@ -264,12 +264,12 @@ types:
             queryParameters:
               startDate:
                 description:  first date from which to search for HMRCTransactions
-                type: ISO8601-DateType
+                type: ISO8601-Date
                 #required: true
                 example: "2017-10-06"
               endDate:
                 description:  last date from which to search for HMRCTransactions
-                type: ISO8601-DateType
+                type: ISO8601-Date
                 #required: true
                 example: "2017-11-05"
               transactionType:
@@ -284,6 +284,7 @@ types:
                   application/json:
                     type: !include schemas/LISATransaction.get.schema.array.json
                     example: !include examples/LISATransaction.get.array.json
+
               403:
                 description: Access Denied.
                 body:
@@ -402,12 +403,12 @@ types:
         queryParameters:
           startDate:
             description:  first date from which to search for HMRCPayments
-            type: ISO8601-DateType
+            type: ISO8601-Date
             #        required: true
             example: "2017-10-06"
           endDate:
             description:  last date from which to search for HMRCPayments
-            type: ISO8601-DateType
+            type: ISO8601-Date
             #required: true
             example: "2017-11-05"
           direction:
@@ -472,12 +473,12 @@ types:
             queryParameters:
               startDate:
                 description:  first date from which to search for HMRCTransaction
-                type: ISO8601-DateType
+                type: ISO8601-Date
                 #        required: true
                 example: "2017-10-06"
               endDate:
                 description:  last date from which to search for HMRCTransaction
-                type: ISO8601-DateType
+                type: ISO8601-Date
                 #required: true
                 example: "2017-11-05"
             responses:
@@ -487,6 +488,7 @@ types:
                   application/json:
                     type: !include schemas/HMRCTransaction.get.array.json
                     example: !include examples/HMRCTransaction.get.array.json
+
               403:
                 description: access denied – If attempting to access a payment not belonging to the calling LISAManager
               404:
@@ -509,6 +511,7 @@ types:
                     application/json:
                       type: !include schemas/HMRCTransaction.get.json
                       example: !include examples/HMRCTransaction.get.json
+
                 403:
                   description: access denied – if the HMRCTransaction is not for the calling LISAManager
                   body:
@@ -535,7 +538,7 @@ types:
       NINO:
         description:  NINO for the Investor
         type: NINOtype
-        #        required: true
+        required: true
         example: "AB123456D"
       firstname:
         description:  first name of the Investor
@@ -549,8 +552,8 @@ types:
         example: "Doe"
       DoB:
         description: Date of birth of the Investor
-        type: ISO8601-DateType
-        #        required: "true"
+        type: ISO8601-Date
+        required: true
         example: "2017-10-23"
     responses:
       200:
@@ -604,8 +607,8 @@ types:
         200:
           body:
             application/json:
-              example: !include examples/LISAInvestor.get.json
               type: !include schemas/LISAInvestor.get.schema.json
+              example: !include examples/LISAInvestor.get.json
         403:
           description: if LISAInvestor exists but does not have accounts
             belonging to the accessing LISAManager.  This error message supplied

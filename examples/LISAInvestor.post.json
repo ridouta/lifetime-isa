@@ -4,10 +4,5 @@
   "title" : "Mr",
   "firstname" : "Ex",
   "lastname" : "Ample",
-  "DoB" : "1973-03-24",
-  "_links" : {
-    "self" : {"href" : "/lisa/investors/87654321"},
-    "account" : {"href" : "/lisa/manager/Z987654321/accounts/{accountID}"},
-    "accounts" : {"href" : "/lisa/manager/Z987654321/accounts"}
-  }
+  "DoB" : "1973-03-24"
 }
