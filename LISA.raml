@@ -129,6 +129,7 @@ types:
       description: The HTTP GET call fetches a resource that is the primary entry point for the LISA API.
         It provides a set of links that allow the API developer to discover the URI endpoints
         for access to other resources defined in this specification.
+      displayName: GET a LISAManager resource by LISAManagerReferenceNumberType
       is: [version-1]
       responses:
         200:
@@ -149,6 +150,7 @@ types:
       post:
         is: [version-1]
         description: Create a new account
+        displayName: POST a LISAAccount to create the resource
         body:
           application/json:
             type: !include schemas/LISAAccount.put.schema.json
@@ -194,6 +196,7 @@ types:
             combination of LISAManagerReferenceNumber and accountID.  Returns a
             JSON object in the response body.  An example is shown below, as is
             a JSON schema describing the JSON object.
+          displayName: Get a single LISAAccount resource using LISAManagerReferenceNumber and accountID.
 
           responses:
             200:
@@ -216,6 +219,7 @@ types:
         put:
           is: [version-1]
           description: To update an existing LISAAccount to change status and set closeDate.
+          displayName: PUT to update an existing LISAAccount to change status and set closeDate
           body:
             application/json:
               type: !include schemas/LISAAccount.put.schema.json
@@ -379,6 +383,7 @@ types:
                 example: "1234567890"
             get:
               is: [version-1]
+              displayName: GET a LISATransaction resource by its lisaTransactionID
               description: Request a single LISATransaction resource as a JSON object
                 identified by its lisaTransactionID
               responses:
@@ -502,7 +507,8 @@ types:
                 description: identify the exact HMRCTransaction by a unique HMRCTransactionID
                 example: "1111111111"
             get:
-              description: Request an individual HMRCTransaction resource for a specified HMRCPayment
+              description: Request an individual HMRCTransaction resource for a specified HMRCTransactionID
+              displayName: GET an HMRCTransaction resource by HMRCTransactionID
               is: [version-1]
               responses:
                 200:
