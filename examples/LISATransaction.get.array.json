@@ -36,8 +36,8 @@
 			{
 				"transferredFromManager" : {"href" :
 						"/lisa/manager/Z876543222"},
-		"transferedFromAccount" :
-		{
+				"transferedFromAccount" :
+				{
 					"href" : "/lisa/manager/Z876543222/accounts/1234567890"
 				}
 			}

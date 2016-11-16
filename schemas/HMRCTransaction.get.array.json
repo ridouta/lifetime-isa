@@ -18,6 +18,7 @@
   			"$ref": "#/definitions/LISAManagerReferenceNumberType"
   		},
   		"amount" : {"type" : "number"},
+			"paymentForTransaction" : {"$ref": "#/definitions/IDType"},
 
   		"applicablePeriod" :
   		{
@@ -36,6 +37,7 @@
   		"LISAManagerReferenceNumber",
   		"paymentReference",
   		"amount",
+			"paymentForTransaction",
   		"transactionType",
       "applicablePeriod"
   	],

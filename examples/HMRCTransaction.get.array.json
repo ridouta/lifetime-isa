@@ -8,6 +8,8 @@
   	"transactionType" : "bonus",
   	"transactionTimestamp" : "2017-06-19T11:55Z",
   	"amount" : 2345.67,
+    // LISATransaction ID that relates to this HMRC transaction
+  	"paymentForTransaction" : "3333333333",
 
   	"applicablePeriod" :
   	{
@@ -33,6 +35,8 @@
     "transactionType" : "bonus",
     "transactionTimestamp" : "2017-06-19T11:55Z",
     "amount" : 1345.67,
+    // LISATransaction ID that relates to this HMRC transaction
+  	"paymentForTransaction" : "4444444444",
 
     "applicablePeriod" :
     {

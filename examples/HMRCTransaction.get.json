@@ -7,6 +7,8 @@
 	"transactionType" : "bonus",
 	"transactionTimestamp" : "2017-06-19T11:55Z",
 	"amount" : 2345.67,
+	// LISATransaction ID that relates to this HMRC transaction
+	"paymentForTransaction" : "3333333333",
 
 	"applicablePeriod" :
 	{
@@ -20,6 +22,7 @@
     "investor" : {"href" : "/lisa/investors/87654321"},
     "account" : {"href" : "/lisa/manager/Z9876543210/accounts/1234567890"},
     "manager" : {"href" : "/lisa/manager/Z9876543210"},
-    "payment" : {"href" : "/lisa/manager/Z9876543210/payments/1234565432"}
+    "payment" : {"href" : "/lisa/manager/Z9876543210/payments/1234565432"},
+		"lisaTransaction" : {"href" : "/lisa/manager/Z9876543210/accounts/1234567890/transactions/3333333333"}
 	}
 }
