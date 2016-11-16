@@ -312,7 +312,7 @@ types:
             description: Create a LISATransaction resource.  This endpoint
               does not support updating a LISATransaction. To correct a LISA
               transaction, it is necessary to create a superseding transaction.
-            displayName:
+            displayName: POST to create a LISATransaction resource.
             body:
               application/json:
                 type: !include schemas/LISATransaction.post.schema.json
@@ -608,6 +608,7 @@ types:
       is: [version-1]
       description: This is the primary access mechanism for an already known
         investor with an existing LISAInvestor resource in existence.
+      displayName: GET an existing LISAInvestor resource associated with calling LISAManager
       body:
       responses:
         200:
