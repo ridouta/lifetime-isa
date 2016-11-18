@@ -39,6 +39,7 @@ documentation:
      is shared between LISA Providers.  LISAAccount represents the creation a LISA account by the LISA
      provider on behalf of an investor. LISATransaction represents some of the transactions on the LISA
      account where HMRC has a business reason to need the information.
+     A [link] (documentation/LISA%20data%20model%20v2_4.png)
  - title: Versioning
    content: A specific version of the API can be requested by providing an Accept header with a media
     type of application/vnd.hmrc.v1.0+json
@@ -64,7 +65,8 @@ traits:
           and an associated Government Gateway service enrolment (also known as a subscription) will
           also be required when the LISA managing organisation registers with HMRC.  Existing organisation
           Government Gateway credentials may be use-used.
-
+        type: string
+        example: Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
 
 types:
   NINOtype:
