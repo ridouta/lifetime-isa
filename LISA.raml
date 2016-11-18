@@ -57,6 +57,13 @@ traits:
         description: Define the Accept header value as a trait
         type: string
         example: application/vnd.hmrc.1.0+json
+      Authorization:
+        description: An OAUTH2 access token generated using the HMRC user restricted endpoint capability
+          See https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation#user-restricted
+          for more details.  It is expected that Government Gateway organisation credentials will be required
+          and an associated Government Gateway service enrolment (also known as a subscription) will
+          also be required when the LISA managing organisation registers with HMRC.  Existing organisation
+          Government Gateway credentials may be use-used.
 
 
 types:
@@ -196,7 +203,7 @@ types:
             combination of LISAManagerReferenceNumber and accountID.  Returns a
             JSON object in the response body.  An example is shown below, as is
             a JSON schema describing the JSON object.
-          displayName: Get a single LISAAccount resource using LISAManagerReferenceNumber and accountID.
+          displayName: GET a single LISAAccount resource using LISAManagerReferenceNumber and accountID.
 
           responses:
             200:
