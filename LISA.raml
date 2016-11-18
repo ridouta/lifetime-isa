@@ -279,18 +279,18 @@ types:
               startDate:
                 description:  first date from which to search for HMRCTransactions
                 type: ISO8601-Date
-                #required: true
+                required: true
                 example: "2017-10-06"
               endDate:
                 description:  last date from which to search for HMRCTransactions
                 type: ISO8601-Date
-                #required: true
+                required: true
                 example: "2017-11-05"
               transactionType:
                 description:  search for HMRCTransactions including transactions
                   with the specified transactiomType
                 type: lisaTransactionType
-                #required: false
+                required: false
                 example: "LISAtransfer"
             responses:
               200:
@@ -419,27 +419,27 @@ types:
           startDate:
             description:  first date from which to search for HMRCPayments
             type: ISO8601-Date
-            #        required: true
+            required: true
             example: "2017-10-06"
           endDate:
             description:  last date from which to search for HMRCPayments
             type: ISO8601-Date
-            #required: true
+            required: true
             example: "2017-11-05"
           direction:
             description:  search for HMRCPayments including payments with the specified payment Direction
             type: paymentDirectionType
-            #required: false
+            required: false
             example: "credit"
           status:
             description:  search for HMRCPayments including payments with the specified payment status
             type: paymentStatusType
-            #required: false
+            required: false
             example: "pending"
           method:
             description:  search for HMRCPayments including payments with the specified payment method
             type: paymentMethodType
-            #required: false
+            required: false
             example: "BACS"
         responses:
           200:
