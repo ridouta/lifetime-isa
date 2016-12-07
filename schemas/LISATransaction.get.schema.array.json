@@ -127,7 +127,7 @@
 			"pattern": "^\\d{10}$"},
 		"LISAManagerReferenceNumberType" : {
 			"type" : "string",
-			"pattern": "^Z\\d{10}$"},
+			"pattern": "^Z\\d6$"},
 		"transactionTypeType" : {
 			"type" : "string",
 			"enum": ["bonus", "charge"]},

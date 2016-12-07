@@ -1,11 +1,11 @@
 {
-  "LISAManagerReferenceNumber" : "Z1234567890",
+  "LISAManagerReferenceNumber" : "Z543210",
   "LISAProviderName" : "Example Building Society",
   "_links" :
   {
     "self" : {"href" : "/lisa/manager/{LISAManagerReferenceNumber}"},
-    "account" : {"href" : "/lisa/manager/Z9876543210/accounts/{accountID}"},
-    "accounts" : {"href" : "/lisa/manager/Z9876543210/accounts"},
+    "account" : {"href" : "/lisa/manager/Z543210/accounts/{accountID}"},
+    "accounts" : {"href" : "/lisa/manager/Z543210/accounts"},
     "investor" : {"href" : "/lisa/investors/{investorID}"},
     "investorSearch" : {"href" : "/lisa/investors?NINO={NINO}&firstname={firstname}&lastname={lastname}&DoB={DoB}"},
     "investors" : {"href" : "/lisa/investors"},

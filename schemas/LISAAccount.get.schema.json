@@ -103,7 +103,7 @@
     "LISAManagerReferenceNumberType" :
     {
       "type" : "string",
-      "pattern": "^Z\\d{10}$"
+      "pattern": "^Z\\d{6}$"
     }
   }
 }
