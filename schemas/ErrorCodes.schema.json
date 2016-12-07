@@ -27,7 +27,9 @@
 				"compliance-bonus-wrong",
 				"compliance-too-many-subscriptions-in-FP",
 				"compliance-too-much-LISA-funds-credited",
-				"compliance-too-much-ISA-funds-credited"
+				"compliance-too-much-ISA-funds-credited",
+				"compliance-account-open-outside-age-range",
+				"compliance-funds-credit-outside-age-range"
       ]
     }
   }

@@ -191,6 +191,11 @@ types:
                       "error-code" : "wrong-lisa-manager",
                       "error-desc" : "the LISAManagerReferenceNumber in URI does match match the calling LISAManager"
                     }
+                  outsideAgeRange:
+                    {
+                      "error-code" : "compliance-account-open-outside-age-range",
+                      "error-desc" : "Can't open a LISA if investor is older than 40 or younger than 18"
+                    }
           409:
             description: The LISAAccount already exists
       /{accountID}:
@@ -377,6 +382,13 @@ types:
                           "error-desc" : "The Investor is trying to credit more
                             funds than the current limit ISA subscription in the
                             financial period"
+                        }
+                      complianceAgeRangeForCredit:
+                        {
+                          "error-code" : "compliance-funds-credit-outside-age-range",
+                          "error-desc" : "The Investor is trying to cedit funds to a
+                            LISA when outside the compliant age range.
+                            Transfers for a LISA do not count as Credits"
                         }
 
               409:
