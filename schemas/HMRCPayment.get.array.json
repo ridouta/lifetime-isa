@@ -60,7 +60,7 @@
 			"pattern": "^\\d{10}$"},
 		"LISAManagerReferenceNumberType" : {
 			"type" : "string",
-			"pattern": "^Z\\d6$"},
+			"pattern": "^Z\\d{6}$"},
 		"paymentMethodType" : {
 			"type" : "string",
 			"enum": ["directDebit", "BACS"]},
