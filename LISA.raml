@@ -51,6 +51,7 @@ uses:
   sec: resourceTypes/securitySchemes.raml
   annotations: resourceTypes/annotations.raml
 
+(annotations.scope): "read:lifetime-individual-savings-account"
 securedBy: [ sec.oauth_2_0: { scopes: [ "read:lifetime-individual-savings-account" ] } ]
 
 mediaType: [ application/json, application/hal+json ]
