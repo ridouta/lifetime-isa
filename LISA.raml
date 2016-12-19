@@ -104,18 +104,18 @@ types:
     }
 #    type: !include schemas/HMRCPayment.get.json#definitions/paymentStatusType
 
-  paymentMethodType: |
+  paymentMethodType:
+    enum : [directDebit, BACS]
+  paymentMethodType2: |
     {
       "type" : "string",
       "enum": ["directDebit", "BACS"]
     }
 #    type: !include schemas/HMRCPayment.get.json#definitions/paymentMethodType
 
-  hmrcTransactionType: |
-    {
-      "type" : "string",
-      "enum": ["bonus", "charge"]
-    }
+#  hmrcTransactionType: {"type" : "string","enum": ["bonus", "charge"]}
+  hmrcTransactionType :
+    enum: [bonus, charge]
 
   lisaTransactionType: |
     {
