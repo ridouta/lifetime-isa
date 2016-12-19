@@ -1,7 +1,7 @@
 #%RAML 1.0
 ---
 
-title: Lifetime ISA API
+title: Lifetime ISA
 version: 1.0
 protocols: [ HTTPS ]
 baseUri: http://api.service.hmrc.gov.uk/lifetime-isa
@@ -52,7 +52,7 @@ uses:
   annotations: resourceTypes/annotations.raml
 
 (annotations.scope): "read:lifetime-individual-savings-account"
-securedBy: [ sec.oauth_2_0: { scopes: [ "read:lifetime-individual-savings-account" ] } ]
+
 
 mediaType: [ application/json, application/hal+json ]
 
@@ -71,6 +71,9 @@ traits:
         type: string
         required: true
         example: application/vnd.hmrc.1.0+json
+
+  OAUTH2-secured:
+    securedBy: [ sec.oauth_2_0: { scopes: [ "read:lifetime-individual-savings-account" ] } ]
 
 types:
   NINOtype:
@@ -150,11 +153,11 @@ types:
         description: The number issued to the LISA provider upon successful LISA registration with HMRC
         example: "Z123456"
     get:
+      is: [version-1, json-content, OAUTH2-secured]
       description: The HTTP GET call fetches a resource that is the primary entry point for the LISA API.
         It provides a set of links that allow the API developer to discover the URI endpoints
         for access to other resources defined in this specification.
       displayName: GET a LISAManager resource by LISAManagerReferenceNumber
-      is: [version-1, json-content]
       responses:
         200:
           body:
@@ -172,7 +175,7 @@ types:
     /accounts:
       description: !include documentation/LISAAccount
       post:
-        is: [version-1, json-content]
+        is: [version-1, json-content, OAUTH2-secured]
         description: Create a new account
         displayName: POST a LISAAccount to create the resource
         body:
@@ -220,7 +223,7 @@ types:
               be unique when used in combination with LISAManagerReferenceNumber
             example: "1234567890"
         get:
-          is: [version-1, json-content]
+          is: [version-1, json-content, OAUTH2-secured]
           description: Get a single LISAAccount resource using the unique
             combination of LISAManagerReferenceNumber and accountID.  Returns a
             JSON object in the response body.  An example is shown below, as is
@@ -246,7 +249,7 @@ types:
             404:
               description: The LISAAccount identified by the accountID does not exist
         put:
-          is: [version-1, json-content]
+          is: [version-1, json-content, OAUTH2-secured]
           description: To update an existing LISAAccount to change status and set closeDate.
           displayName: PUT to update an existing LISAAccount to change status and set closeDate
           body:
@@ -288,7 +291,7 @@ types:
         /transactions:
           description: !include documentation/LISATransaction
           get:
-            is: [version-1, json-content]
+            is: [version-1, json-content, OAUTH2-secured]
             displayName: GET an array of LISATransaction using query parameters
               on date range and optionally transactionType
             description: Returns a collection of LISATransaction resources for
@@ -337,7 +340,7 @@ types:
 
 
           post:
-            is: [version-1, json-content]
+            is: [version-1, json-content, OAUTH2-secured]
             description: Create a LISATransaction resource.  This endpoint
               does not support updating a LISATransaction. To correct a LISA
               transaction, it is necessary to create a superseding transaction.
@@ -410,7 +413,7 @@ types:
                   be unique when
                 example: "1234567890"
             get:
-              is: [version-1, json-content]
+              is: [version-1, json-content, OAUTH2-secured]
               displayName: GET a LISATransaction resource by its lisaTransactionID
               description: Request a single LISATransaction resource as a JSON object
                 identified by its lisaTransactionID
@@ -430,7 +433,7 @@ types:
 
     /payments:
       get:
-        is: [version-1, json-content]
+        is: [version-1, json-content, OAUTH2-secured]
         displayName: GET HMRC Payment using query parameters on date range and optionally direction, method and status
         description: !include documentation/HMRCPayment
         queryParameters:
@@ -480,7 +483,7 @@ types:
             description: identify the exact payment by a unique payment reference
             example: "1111111111"
         get:
-          is: [version-1, json-content]
+          is: [version-1, json-content, OAUTH2-secured]
           displayName: GET an HMRCPayment resource using paymentReference as a unique key
           description: Fetch a JSON HMRCPayment resource selected by paymentReference
           responses:
@@ -499,7 +502,7 @@ types:
         /hmrc-transactions:
           description: !include documentation/HMRCTransaction
           get:
-            is: [version-1, json-content]
+            is: [version-1, json-content, OAUTH2-secured]
             displayName: Get an array of HMRCTransaction using optional
               query parameters on date range
             description: Fetch a JSON array of HMRCTransaction resources either
@@ -538,9 +541,9 @@ types:
                 description: identify the exact HMRCTransaction by a unique HMRCTransactionID
                 example: "1111111111"
             get:
+              is: [version-1, json-content, OAUTH2-secured]
               description: Request an individual HMRCTransaction resource for a specified HMRCTransactionID
               displayName: GET an HMRCTransaction resource by HMRCTransactionID
-              is: [version-1, json-content]
               responses:
                 200:
                   description: A single HMRCTransaction resource is returned in the response body.
@@ -568,7 +571,7 @@ types:
 
 /investors:
   get:
-    is: [version-1, json-content]
+    is: [version-1, json-content, OAUTH2-secured]
     displayName: GET a LISA investor using full matching
     description: !include documentation/LISAInvestor
     queryParameters:
@@ -601,7 +604,7 @@ types:
         description: An investor has not been found that matches the 4 search parameters
 
   post:
-    is: [version-1, json-content]
+    is: [version-1, json-content, OAUTH2-secured]
     displayName: POST to create new LISA Investor that has not already been created
     description: !include documentation/LISAInvestor.post
     body:
@@ -636,7 +639,7 @@ types:
     uriParameters:
       investorID: IDtype
     get:
-      is: [version-1, json-content]
+      is: [version-1, json-content, OAUTH2-secured]
       description: This is the primary access mechanism for an already known
         investor with an existing LISAInvestor resource in existence.
       displayName: GET an existing LISAInvestor resource associated with calling LISAManager
