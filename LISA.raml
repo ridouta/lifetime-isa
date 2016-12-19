@@ -297,7 +297,7 @@ types:
                   with the specified transactiomType
                 type: lisaTransactionType
 #                required: false
-                example: "LISAtransfer"
+                example: LISAtransfer
             responses:
               200:
                 body:
@@ -435,17 +435,17 @@ types:
             description: optional -  search for HMRCPayments including payments with the specified payment Direction
             type: paymentDirectionType
 #            required: false
-            example: "credit"
+            example: credit
           status:
             description: optional - search for HMRCPayments including payments with the specified payment status
             type: paymentStatusType
 #            required: false
-            example: "pending"
+            example: pending
           method:
             description: optional - search for HMRCPayments including payments with the specified payment method
             type: paymentMethodType
 #            required: false
-            example: "BACS"
+            example: BACS
         responses:
           200:
             description: OK - Returns a JSON array of HMRCPayment resources in the response body.
