@@ -90,14 +90,20 @@ types:
 #    type: !include schemas/ErrorCodes.schema.json#definitions/error-codeType
 
   paymentDirectionType:
+    enum: [credit, debit]
 #    type: !include schemas/HMRCPayment.get.json#definitions/paymentDirectionType
+
+  paymentDirectionType2:
     schema: |
       {
         "type" : "string",
         "enum": ["credit", "debit"]
       }
 
-  paymentStatusType: |
+  paymentStatusType:
+    enum: [pending, submitted, completed]
+
+  paymentStatusType2: |
     {
       "type" : "string",
       "enum": ["pending", "submitted", "completed"]
@@ -106,6 +112,7 @@ types:
 
   paymentMethodType:
     enum : [directDebit, BACS]
+
   paymentMethodType2: |
     {
       "type" : "string",
@@ -117,7 +124,10 @@ types:
   hmrcTransactionType :
     enum: [bonus, charge]
 
-  lisaTransactionType: |
+  lisaTransactionType :
+    enum: [deposit, withdrawal, HTBtransfer, LISAtransfer, bonusClaim, chargeMade]
+
+  lisaTransactionType2: |
     {
       "type" : "string",
       "enum": ["deposit", "withdrawal", "HTBtransfer", "LISAtransfer",
