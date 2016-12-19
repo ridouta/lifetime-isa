@@ -447,16 +447,21 @@ types:
           direction:
             description: optional -  search for HMRCPayments including payments with the specified payment Direction
             type: paymentDirectionType
-            example: credit
+            required: false
+            example:
+              value: credit
           status:
             description: optional - search for HMRCPayments including payments with the specified payment status
             type: paymentStatusType
+            required: false
             example:
               value: pending
           method:
             description: optional - search for HMRCPayments including payments with the specified payment method
             type: paymentMethodType
-            example: BACS
+            required: false
+            example:
+              value: BACS
         responses:
           200:
             description: OK - Returns a JSON array of HMRCPayment resources in the response body.
