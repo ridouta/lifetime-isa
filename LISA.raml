@@ -60,14 +60,15 @@ traits:
   version-1:
     headers:
       Accept:
-        description: Define the Accept header value as a trait
+        description: Accept JSON content at version 1
         type: string
+        required: true
         example: application/vnd.hmrc.1.0+json
 
   json-content:
     headers:
       Content-Type:
-        description: Specifies the format of the request body, which must be JSON.
+        description: Specifies the format of the request body, which must be JSON and at HMRC version 1.
         type: string
         required: true
         example: application/vnd.hmrc.1.0+json
