@@ -7,51 +7,17 @@ protocols: [ HTTPS ]
 baseUri: http://api.service.hmrc.gov.uk/lifetime-isa
 
 documentation:
- - title: Overview
-   content: This document is an HMRC Digital specification of a RESTful Application Program Interface.
-    The API is being produced to support the introduction of the Lifetime Independent Savings Account
-    or LISA.  It is intended that the API must be used by financial organisations who will offer
-    Lifetime ISA products to UK citizens.  It has been a decision of HM Treasury that the LISA product
-    will be supported by HMRC as a Digital only offering.  Hence this API specification defines the
-    only method offered by HMRC to prospective LISA providers.
-    HMRC digital intends to engage in API user research with a group of interested financial organisations
-    to discover their user needs.  HMRC digital intends to refine the API to meet;
-    a) the user needs,
-    b) any emerging HMRC technical constraints and
-    c) any change in policy or legislation regarding the LISA concept.
-    This release of the document is marked "Alpha" as it has been produced early in the delivery cycle
-    with the express intent to support the API user research.  It is very likely to change.  Therefore
-    development against an Alpha API specification is best thought of as a learning exercise.   Any
-    effort estimation or costing against the content of this specification must be considered as a
-    rough guide only.
-    This is a technical specification document.  Therefore, the target audience is technical staff
-    operating on behalf of a financial organisation who is considering offering a LISA product.  The
-    reader is assumed to have familiarity with RESTful API concepts and JSON and JSON Schema.
- - title: Resource Model
-   content:
-     The resource model show below depicts the resources that are exposed via the API.
-     Three of the resources are read-only via the API; LISAManager, HMRCPayment and HMRCTransaction.
-     LISAManager is effectively created as part of the LISA registration process – which is not done
-     over API methods.  HMRCPayment and HMRCTransaction resources are created by HMRC systems and
-     represent the money transferred between HMRC and the LISA provider in either direction. Three
-     resources are writeable via the API; LISAInvestor, LISAAccount and LISATransaction.  These three
-     resources represent data sent from the LISA provider to HMRC.  LISAInvestor is a resource that
-     is shared between LISA Providers.  LISAAccount represents the creation a LISA account by the LISA
-     provider on behalf of an investor. LISATransaction represents some of the transactions on the LISA
-     account where HMRC has a business reason to need the information.
-     See the resource model image at [link]
-     (https://github.com/ridouta/lifetime-isa/blob/master/documentation/LISA%20data%20model%20v2_4.png)
- - title: Versioning
-   content: A specific version of the API can be requested by providing an Accept header with a media
-    type of application/vnd.hmrc.v1.0+json
- - title: Errors
-   content: 2xx range indicates success, 4xx range indicates failure
+  - title: Resource Model
+    content: !include documentation/overview.md
+  - title: Versioning
+    content: !include documentation/versioning.md
+  - title: Errors
+    content: !include documentation/errors.md
 
 uses:
   sec: resourceTypes/securitySchemes.raml
   annotations: resourceTypes/annotations.raml
 
-(annotations.scope): "read:lifetime-individual-savings-account"
 
 
 mediaType: [ application/json, application/hal+json ]
@@ -147,9 +113,9 @@ types:
     It is created by HMRC as a result of a LISA registration.  The registration process is not
     part of the API specification as it is a forms based process with manual verification by HMRC staff.
 
-  /{LISAManagerReferenceNumber}:
+  /{lisaManagerReferenceNumber}:
     uriParameters:
-      LISAManagerReferenceNumber:
+      lisaManagerReferenceNumber:
         type : LISAManagerReferenceNumberType
         description: The number issued to the LISA provider upon successful LISA registration with HMRC
         example: "Z123456"
@@ -158,7 +124,8 @@ types:
       description: The HTTP GET call fetches a resource that is the primary entry point for the LISA API.
         It provides a set of links that allow the API developer to discover the URI endpoints
         for access to other resources defined in this specification.
-      displayName: GET a LISAManager resource by LISAManagerReferenceNumber
+      displayName: GET a LISAManager resource by lisaManagerReferenceNumber
+      (annotations.scope): "read:lifetime-individual-savings-account"
       responses:
         200:
           body:
@@ -170,7 +137,7 @@ types:
             therefore access has been declined
         404:
           description: The LISAManager resource specified by the supplied
-            LISAManagerReferenceNumber has not been found.
+            lisaManagerReferenceNumber has not been found.
 
 
     /accounts:
@@ -179,6 +146,7 @@ types:
         is: [version-1, json-content, OAUTH2-secured]
         description: Create a new account
         displayName: POST a LISAAccount to create the resource
+        (annotations.scope): "write:lifetime-individual-savings-account"
         body:
           application/json:
             type: !include schemas/LISAAccount.put.schema.json
@@ -207,7 +175,7 @@ types:
                   wrongLISAManager: |
                     {
                       "error-code" : "wrong-lisa-manager",
-                      "error-desc" : "the LISAManagerReferenceNumber in URI does match match the calling LISAManager"
+                      "error-desc" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
                     }
                   outsideAgeRange: |
                     {
@@ -221,15 +189,16 @@ types:
           accountID:
             type: IDtype
             description: The ID for the account.  This will be generated by the LISAManager and will only
-              be unique when used in combination with LISAManagerReferenceNumber
+              be unique when used in combination with lisaManagerReferenceNumber
             example: "1234567890"
         get:
           is: [version-1, json-content, OAUTH2-secured]
           description: Get a single LISAAccount resource using the unique
-            combination of LISAManagerReferenceNumber and accountID.  Returns a
+            combination of lisaManagerReferenceNumber and accountID.  Returns a
             JSON object in the response body.  An example is shown below, as is
             a JSON schema describing the JSON object.
-          displayName: GET a single LISAAccount resource using LISAManagerReferenceNumber and accountID.
+          displayName: GET a single LISAAccount resource using lisaManagerReferenceNumber and accountID.
+          (annotations.scope): "read:lifetime-individual-savings-account"
 
           responses:
             200:
@@ -245,7 +214,7 @@ types:
                     wrongLISAManager: |
                       {
                         "error-code" : "wrong-lisa-manager",
-                        "error-desc" : "the LISAManagerReferenceNumber in URI does match match the calling LISAManager"
+                        "error-desc" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
                       }
             404:
               description: The LISAAccount identified by the accountID does not exist
@@ -253,6 +222,7 @@ types:
           is: [version-1, json-content, OAUTH2-secured]
           description: To update an existing LISAAccount to change status and set closeDate.
           displayName: PUT to update an existing LISAAccount to change status and set closeDate
+          (annotations.scope): "write:lifetime-individual-savings-account"
           body:
             application/json:
               type: !include schemas/LISAAccount.put.schema.json
@@ -268,7 +238,7 @@ types:
                     wrongLISAManager: |
                       {
                         "error-code" : "wrong-lisa-manager",
-                        "error-desc" : "the LISAManagerReferenceNumber in URI does match match the calling LISAManager"
+                        "error-desc" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
                       }
                     cantChangeAccountID: |
                       {
@@ -298,6 +268,7 @@ types:
             description: Returns a collection of LISATransaction resources for
               the specified account as a JSON array.  The array will be empty
               if none are found.  The request and response must support pagination.
+            (annotations.scope): "read:lifetime-individual-savings-account"
             queryParameters:
               startDate:
                 description:  first date from which to search for HMRCTransactions
@@ -331,11 +302,11 @@ types:
                       {
                         "error-code" : "wrong-lisa-manager",
                         "error-desc" : "The LISAAccount specified by the
-                          accountID or the LISAManagerReferenceNumber in the URL does
+                          accountID or the lisaManagerReferenceNumber in the URL does
                           not belong to the calling LISAManager"
                       }
               404:
-                description: the LISAManagerReferenceNumber or accountID fail to
+                description: the lisaManagerReferenceNumber or accountID fail to
                   locate to their respective resources.
                   Namely LISAManager and LISAAccount.
 
@@ -346,6 +317,7 @@ types:
               does not support updating a LISATransaction. To correct a LISA
               transaction, it is necessary to create a superseding transaction.
             displayName: POST to create a LISATransaction resource.
+            (annotations.scope): "write:lifetime-individual-savings-account"
             body:
               application/json:
                 type: !include schemas/LISATransaction.post.schema.json
@@ -418,6 +390,7 @@ types:
               displayName: GET a LISATransaction resource by its lisaTransactionID
               description: Request a single LISATransaction resource as a JSON object
                 identified by its lisaTransactionID
+              (annotations.scope): "read:lifetime-individual-savings-account"
               responses:
                 200:
                   body:
@@ -426,7 +399,7 @@ types:
                       example: !include examples/LISATransaction.get.json
                 403:
                   description: Access Denied.  The LISAAccount specified by the
-                    accountID in the URL or the LISAManagerReferenceNumber is do
+                    accountID in the URL or the lisaManagerReferenceNumber is do
                     not belong to the calling LISAManager
                 404:
                   description: Not found
@@ -437,6 +410,7 @@ types:
         is: [version-1, json-content, OAUTH2-secured]
         displayName: GET HMRC Payment using query parameters on date range and optionally direction, method and status
         description: !include documentation/HMRCPayment
+        (annotations.scope): "read:lifetime-individual-savings-account"
         queryParameters:
           startDate:
             description:  first date from which to search for HMRCPayments
@@ -487,6 +461,7 @@ types:
           is: [version-1, json-content, OAUTH2-secured]
           displayName: GET an HMRCPayment resource using paymentReference as a unique key
           description: Fetch a JSON HMRCPayment resource selected by paymentReference
+          (annotations.scope): "read:lifetime-individual-savings-account"
           responses:
             200:
               description: OK - Returns a JSON array of HMRCPayment resources in the response body.
@@ -510,6 +485,8 @@ types:
               fetching all HMRCTRansactions for the paymentReference or selected by
               a date range search from the startDate to the endDate supplied as
               HTML query parameters.
+            (annotations.scope): "read:lifetime-individual-savings-account"
+
             queryParameters:
               startDate:
                 description:  first date from which to search for HMRCTransaction
@@ -545,6 +522,8 @@ types:
               is: [version-1, json-content, OAUTH2-secured]
               description: Request an individual HMRCTransaction resource for a specified HMRCTransactionID
               displayName: GET an HMRCTransaction resource by HMRCTransactionID
+              (annotations.scope): "read:lifetime-individual-savings-account"
+
               responses:
                 200:
                   description: A single HMRCTransaction resource is returned in the response body.
@@ -575,6 +554,8 @@ types:
     is: [version-1, json-content, OAUTH2-secured]
     displayName: GET a LISA investor using full matching
     description: !include documentation/LISAInvestor
+    (annotations.scope): "read:lifetime-individual-savings-account"
+
     queryParameters:
       NINO:
         description:  NINO for the Investor
@@ -608,6 +589,7 @@ types:
     is: [version-1, json-content, OAUTH2-secured]
     displayName: POST to create new LISA Investor that has not already been created
     description: !include documentation/LISAInvestor.post
+    (annotations.scope): "write:lifetime-individual-savings-account"
     body:
       application/json:
         example: !include examples/LISAInvestor.post.json
@@ -644,6 +626,8 @@ types:
       description: This is the primary access mechanism for an already known
         investor with an existing LISAInvestor resource in existence.
       displayName: GET an existing LISAInvestor resource associated with calling LISAManager
+      (annotations.scope): "read:lifetime-individual-savings-account"
+
       body:
       responses:
         200:
