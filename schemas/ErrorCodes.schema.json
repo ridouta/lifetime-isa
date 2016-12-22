@@ -3,10 +3,10 @@
 	"type": "object",
   "properties":
   {
-    "error-code" : {"$ref": "#/definitions/error-codeType"},
-    "error-desc" : {"type" : "string"}
+    "code" : {"$ref": "#/definitions/error-codeType"},
+    "message" : {"type" : "string"}
   },
-	"required" : ["error-code", "error-desc"],
+	"required" : ["code", "message"],
   "definitions":
   {
     "error-codeType" :

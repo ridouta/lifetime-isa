@@ -18,8 +18,6 @@ uses:
   sec: resourceTypes/securitySchemes.raml
   annotations: resourceTypes/annotations.raml
 
-
-
 mediaType: [ application/json, application/hal+json ]
 
 traits:
@@ -58,6 +56,7 @@ types:
 #    type: !include schemas/LISAtypes.schema.json#definitions/ISO8601-Date
     type : "string"
     pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+
   errorCodeType:
     type: !include schemas/ErrorCodes.schema.json
 #    type: !include schemas/ErrorCodes.schema.json#definitions/error-codeType
@@ -164,23 +163,23 @@ types:
                 examples:
                   notOpenStatus: |
                     {
-                      "error-code" : "not-open-status",
-                      "error-desc" : "invalid status: must create with open status"
+                      "code" : "not-open-status",
+                      "message" : "invalid status: must create with open status"
                     }
                   InvestorNotFound: |
                     {
-                      "error-code" : "investor-not-found",
-                      "error-desc" : "invalid status: must create with open status"
+                      "code" : "investor-not-found",
+                      "message" : "invalid status: must create with open status"
                     }
                   wrongLISAManager: |
                     {
-                      "error-code" : "wrong-lisa-manager",
-                      "error-desc" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
+                      "code" : "wrong-lisa-manager",
+                      "message" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
                     }
                   outsideAgeRange: |
                     {
-                      "error-code" : "compliance-account-open-outside-age-range",
-                      "error-desc" : "Can't open a LISA if investor is older than 40 or younger than 18"
+                      "code" : "compliance-account-open-outside-age-range",
+                      "message" : "Can't open a LISA if investor is older than 40 or younger than 18"
                     }
           409:
             description: The LISAAccount already exists
@@ -213,8 +212,8 @@ types:
                   examples:
                     wrongLISAManager: |
                       {
-                        "error-code" : "wrong-lisa-manager",
-                        "error-desc" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
+                        "code" : "wrong-lisa-manager",
+                        "message" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
                       }
             404:
               description: The LISAAccount identified by the accountID does not exist
@@ -237,23 +236,23 @@ types:
                   examples:
                     wrongLISAManager: |
                       {
-                        "error-code" : "wrong-lisa-manager",
-                        "error-desc" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
+                        "code" : "wrong-lisa-manager",
+                        "message" : "the lisaManagerReferenceNumber in URI does match match the calling LISAManager"
                       }
                     cantChangeAccountID: |
                       {
-                        "error-code" : "cant-change-accountID",
-                        "error-desc" : "You cannot change the accountID for an existing account"
+                        "code" : "cant-change-accountID",
+                        "message" : "You cannot change the accountID for an existing account"
                       }
                     cantChangeInvestor: |
                       {
-                        "error-code" : "cant-change-investor",
-                        "error-desc" : "You cannot change the investorID for an existing account"
+                        "code" : "cant-change-investor",
+                        "message" : "You cannot change the investorID for an existing account"
                       }
                     invalidStatusChange: |
                       {
-                        "error-code" : "invalid-status-change",
-                        "error-desc" : "You cannot change the status to the requested value"
+                        "code" : "invalid-status-change",
+                        "message" : "You cannot change the status to the requested value"
                       }
             404:
               description: The LISAAccount identified by the accountID does not exist
@@ -300,8 +299,8 @@ types:
                     type: errorCodeType
                     example:
                       {
-                        "error-code" : "wrong-lisa-manager",
-                        "error-desc" : "The LISAAccount specified by the
+                        "code" : "wrong-lisa-manager",
+                        "message" : "The LISAAccount specified by the
                           accountID or the lisaManagerReferenceNumber in the URL does
                           not belong to the calling LISAManager"
                       }
@@ -339,38 +338,38 @@ types:
                     examples:
                       notOpenStatus: |
                         {
-                          "error-code" : "wrong-lisa-manager",
-                          "error-desc" : "The LISAManager or the LISAAccount do not belong to the calling LISAManager"
+                          "code" : "wrong-lisa-manager",
+                          "message" : "The LISAManager or the LISAAccount do not belong to the calling LISAManager"
                         }
                       complianceChargeWrong: |
                         {
-                          "error-code" : "compliance-charge-wrong",
-                          "error-desc" : "Charge Made disagrees with HMRC records"
+                          "code" : "compliance-charge-wrong",
+                          "message" : "Charge Made disagrees with HMRC records"
                         }
                       complianceBonusWrong: |
                         {
-                          "error-code" : "compliance-bonus-wrong",
-                          "error-desc" : "Bonus claim disagrees with HMRC records"
+                          "code" : "compliance-bonus-wrong",
+                          "message" : "Bonus claim disagrees with HMRC records"
                         }
                       complianceTooManySubcriptions: |
                         {
-                          "error-code" : "compliance-too-many-subscriptions-in-FP",
-                          "error-desc" : "The Investor is trying to start a second LISA subscription in the financial period"
+                          "code" : "compliance-too-many-subscriptions-in-FP",
+                          "message" : "The Investor is trying to start a second LISA subscription in the financial period"
                         }
                       complianceTooMuchLISAFunds: |
                         {
-                          "error-code" : "compliance-too-much-LISA-funds-credited",
-                          "error-desc" : "The Investor is trying to credit more funds than the current limit LISA subscription in the financial period"
+                          "code" : "compliance-too-much-LISA-funds-credited",
+                          "message" : "The Investor is trying to credit more funds than the current limit LISA subscription in the financial period"
                         }
                       complianceTooMuchISAFunds: |
                         {
-                          "error-code" : "compliance-too-much-ISA-funds-credited",
-                          "error-desc" : "The Investor is trying to credit more funds than the current limit ISA subscription in the financial period"
+                          "code" : "compliance-too-much-ISA-funds-credited",
+                          "message" : "The Investor is trying to credit more funds than the current limit ISA subscription in the financial period"
                         }
                       complianceAgeRangeForCredit: |
                         {
-                          "error-code" : "compliance-funds-credit-outside-age-range",
-                          "error-desc" : "The Investor is trying to cedit funds to a LISA when outside the compliant age range. Transfers for a LISA do not count as Credits"
+                          "code" : "compliance-funds-credit-outside-age-range",
+                          "message" : "The Investor is trying to cedit funds to a LISA when outside the compliant age range. Transfers for a LISA do not count as Credits"
                         }
 
               409:
@@ -540,8 +539,8 @@ types:
                       examples:
                         notOpenStatus:
                           {
-                            "error-code" : "wrong-lisa-manager",
-                            "error-desc" : "The Investor resource already exists.
+                            "code" : "wrong-lisa-manager",
+                            "message" : "The Investor resource already exists.
                               The HMRCTransaction does not belong to the calling LISAManager."
                           }
 
@@ -613,8 +612,8 @@ types:
             examples:
               notOpenStatus:
                 {
-                  "error-code" : "investor-already-created",
-                  "error-desc" : "The Investor resource already exists.
+                  "code" : "investor-already-created",
+                  "message" : "The Investor resource already exists.
                     Use the full matching form of GET to access the resource and discover the investorID."
                 }
 
@@ -645,8 +644,8 @@ types:
               examples:
                 noAccountWithManager:
                   {
-                    "error-code" : "no-acccount-with-manager",
-                    "error-desc" : "the investor does not have an account with the calling LISAManager"
+                    "code" : "no-acccount-with-manager",
+                    "message" : "the investor does not have an account with the calling LISAManager"
                   }
         404:
           description: The Investor with the specified investorID has not been found
