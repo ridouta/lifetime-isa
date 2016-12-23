@@ -13,7 +13,7 @@
 		"transactionType" : {"$ref": "#/definitions/lisaTransactionTypeType"},
 		"dateSubmitted" : {"$ref": "#/definitions/ISO8601-Timestamp"},
 		"amount" : {"type" : "number"},
-		"financialPeriod" : {"$ref": "/schemas/LISAtypes.schema.json/definitions/financialPeriodType"},
+		"financialPeriod" : {"$ref": "LISAtypes.post.schema.json/definitions/financialPeriodType"},
 
 		"chargeDueTo" :
 		{
